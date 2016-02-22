@@ -11,7 +11,9 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.WriteLine("Hey røvskæg, knep dit eget knæ møgsvin");
+            Console.WriteLine("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkuk");
             Console.ReadLine();
+
         }
     }
 }

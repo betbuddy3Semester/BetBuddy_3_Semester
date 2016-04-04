@@ -13,8 +13,6 @@ namespace ConsoleApplication1
             Console.WriteLine("Hey røvskæg, knep dit eget knæ møgsvin");
             Console.WriteLine("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkuk");
             Console.WriteLine("Luder");
-            Console.WriteLine("Svin");
-            Console.WriteLine("wdwdw");
             Console.ReadLine();
 
         }

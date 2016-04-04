@@ -8,6 +8,7 @@ namespace RepoDAOCrud
 {
     class Program
     {
+        int fisk = 1;
         static void Main(string[] args)
         {
         }

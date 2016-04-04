@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Linq;
 using System.Linq;
 using System.Linq.Expressions;
+using Model_Objects;
 
 namespace Data_Acess
 {
@@ -12,6 +14,10 @@ namespace Data_Acess
         public Repository(DataContext dataContext)
         {
             DataTable = dataContext.GetTable<T>();
+        }
+
+        public Repository()
+        {
         }
 
         public void Insert(T entity)

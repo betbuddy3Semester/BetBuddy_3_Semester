@@ -1,4 +1,4 @@
-﻿namespace Data_Acess
+﻿namespace Model_Objects
 {
     public interface IEntity
     {

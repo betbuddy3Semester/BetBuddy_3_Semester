@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dmaa0215_2Sem_4" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=kraka.ucn.dk;Initial Catalog=dmaa0215_2Sem_4;Persist Security Info=True;User ID=dmaa0215_2Sem_4" SettingsObjectName="Data_Acess.Properties.Settings" SettingsPropertyName="dmaa0215_2Sem_4ConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="" Member="Kartoffels">
+    <Type Name="Kartoffel">
+      <Column Name="Navn" Type="System.String" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.unitPerson" Member="unitPersons">
+    <Type Name="unitPerson">
+      <Column Name="unitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Person_unitPerson" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+      <Association Name="Unit_unitPerson" Member="Unit" ThisKey="unitID" OtherKey="unitID" Type="Unit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AreaOfResponsibility" Member="AreaOfResponsibilities">
+    <Type Name="AreaOfResponsibility">
+      <Column Name="aorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="areaName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="AreaOfResponsibility_Person" Member="Persons" ThisKey="aorID" OtherKey="aor" Type="Person" />
+      <Association Name="AreaOfResponsibility_Unit" Member="Units" ThisKey="aorID" OtherKey="aor" Type="Unit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cases" Member="Cases">
+    <Type Name="Case">
+      <Column Name="caseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="caseCreator" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="unitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Case_CaseUnit" Member="CaseUnits" ThisKey="caseID" OtherKey="caseID" Type="CaseUnit" />
+      <Association Name="Case_CrimeScene" Member="CrimeScenes" ThisKey="caseID" OtherKey="caseID" Type="CrimeScene" />
+      <Association Name="Case_Statement" Member="Statements" ThisKey="caseID" OtherKey="caseID" Type="Statement" />
+      <Association Name="Person_Case" Member="Person" ThisKey="caseCreator" OtherKey="personID" Type="Person" IsForeignKey="true" />
+      <Association Name="Unit_Case" Member="Unit" ThisKey="unitID" OtherKey="unitID" Type="Unit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CaseUnits" Member="CaseUnits">
+    <Type Name="CaseUnit">
+      <Column Name="unitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="caseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isPrimary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="members" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="transport" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="armed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Case_CaseUnit" Member="Case" ThisKey="caseID" OtherKey="caseID" Type="Case" IsForeignKey="true" />
+      <Association Name="Unit_CaseUnit" Member="Unit" ThisKey="unitID" OtherKey="unitID" Type="Unit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CrimeScene" Member="CrimeScenes">
+    <Type Name="CrimeScene">
+      <Column Name="crimeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="grid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="entryPoint" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="exitPoint" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GSA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="pictures" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="POO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pMethods" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="caseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="forensically" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="fingerprints" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="footprints" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DNA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="humanDiscard" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ammo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="animalState" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Case_CrimeScene" Member="Case" ThisKey="caseID" OtherKey="caseID" Type="Case" IsForeignKey="true" />
+      <Association Name="GRID_CrimeScene" Member="GRID1" ThisKey="entryPoint" OtherKey="gridID" Type="GRID" IsForeignKey="true" />
+      <Association Name="GRID_CrimeScene1" Member="GRID2" ThisKey="exitPoint" OtherKey="gridID" Type="GRID" IsForeignKey="true" />
+      <Association Name="GRID_CrimeScene2" Member="GRID3" ThisKey="grid" OtherKey="gridID" Type="GRID" IsForeignKey="true" />
+      <Association Name="GRID_CrimeScene3" Member="GRID4" ThisKey="POO" OtherKey="gridID" Type="GRID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Email" Member="Emails">
+    <Type Name="Email">
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="email" Member="email1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Person_Email" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GRID" Member="GRIDs">
+    <Type Name="GRID">
+      <Column Name="gridID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="x" Type="System.Decimal" DbType="Decimal(16,14)" CanBeNull="true" />
+      <Column Name="y" Type="System.Decimal" DbType="Decimal(16,14)" CanBeNull="true" />
+      <Association Name="GRID_CrimeScene" Member="CrimeScenes" ThisKey="gridID" OtherKey="entryPoint" Type="CrimeScene" />
+      <Association Name="GRID_CrimeScene1" Member="CrimeScenes1" ThisKey="gridID" OtherKey="exitPoint" Type="CrimeScene" />
+      <Association Name="GRID_CrimeScene2" Member="CrimeScenes2" ThisKey="gridID" OtherKey="grid" Type="CrimeScene" />
+      <Association Name="GRID_CrimeScene3" Member="CrimeScenes3" ThisKey="gridID" OtherKey="POO" Type="CrimeScene" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Person" Member="Persons">
+    <Type Name="Person">
+      <Column Name="personID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="lName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="bDate" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="phoneNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="tribe" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="classification" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="aor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Person_unitPerson" Member="unitPersons" ThisKey="personID" OtherKey="personID" Type="unitPerson" />
+      <Association Name="Person_Case" Member="Cases" ThisKey="personID" OtherKey="caseCreator" Type="Case" />
+      <Association Name="Person_Email" Member="Emails" ThisKey="personID" OtherKey="personID" Type="Email" />
+      <Association Name="Person_PhoneNo" Member="PhoneNos" ThisKey="personID" OtherKey="personID" Type="PhoneNo" />
+      <Association Name="Person_Statement" Member="Statements" ThisKey="personID" OtherKey="personID" Type="Statement" />
+      <Association Name="AreaOfResponsibility_Person" Member="AreaOfResponsibility" ThisKey="aor" OtherKey="aorID" Type="AreaOfResponsibility" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhoneNo" Member="PhoneNos">
+    <Type Name="PhoneNo">
+      <Column Name="phoneNo" Member="phoneNo1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Person_PhoneNo" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Statement" Member="Statements">
+    <Type Name="Statement">
+      <Column Name="statementID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="poss" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DOS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IVO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="timeStamp" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="how" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="target" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="armed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="caseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Case_Statement" Member="Case" ThisKey="caseID" OtherKey="caseID" Type="Case" IsForeignKey="true" />
+      <Association Name="Person_Statement" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Unit" Member="Units">
+    <Type Name="Unit">
+      <Column Name="unitID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="members" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="aor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="primaryTask" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="callSign" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="teamLeader" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Unit_unitPerson" Member="unitPersons" ThisKey="unitID" OtherKey="unitID" Type="unitPerson" />
+      <Association Name="Unit_Case" Member="Cases" ThisKey="unitID" OtherKey="unitID" Type="Case" />
+      <Association Name="Unit_CaseUnit" Member="CaseUnits" ThisKey="unitID" OtherKey="unitID" Type="CaseUnit" />
+      <Association Name="AreaOfResponsibility_Unit" Member="AreaOfResponsibility" ThisKey="aor" OtherKey="aorID" Type="AreaOfResponsibility" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

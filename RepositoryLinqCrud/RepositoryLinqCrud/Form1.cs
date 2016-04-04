@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Data_Acess;
+using Model_Objects;
+
 
 namespace RepositoryLinqCrud
 {
@@ -15,6 +18,13 @@ namespace RepositoryLinqCrud
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var da = new Repository<Kartoffel>();
+            Kartoffel ka = new Kartoffel();
+
         }
     }
 }

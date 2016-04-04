@@ -14,6 +14,8 @@ namespace ConsoleApplication1
             Console.WriteLine("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkuk");
             Console.WriteLine("Luder");
             Console.ReadLine();
+            
+           
 
         }
     }

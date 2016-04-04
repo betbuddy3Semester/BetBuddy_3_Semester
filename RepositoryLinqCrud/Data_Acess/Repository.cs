@@ -11,6 +11,10 @@ namespace Data_Acess
     {
         protected readonly Table<T> DataTable;
 
+        /// <summary>
+        /// Addition of the data table
+        /// </summary>
+        /// <param name="dataContext"></param>
         public Repository(DataContext dataContext)
         {
             DataTable = dataContext.GetTable<T>();
